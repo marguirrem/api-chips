@@ -38,14 +38,26 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        if(!Auth::attempt($request->only('email','password'))){
-            return response()->json(['message'=>'Unauthorized'],401);
 
+        //$user es una coleccion
+        $user = User::where('username',$request['username'])->get();
+
+        if($user->isEmpty()){
+            return response()->json(['message'=>'User not found'],404);
+
+        }else{
+          
+            if($user[0]->password != md5($request['password'])){
+
+                return response()->json(['message'=>'Unauthorized'],401);
+    
+            }
         }
 
-        $user = User::where('email',$request['email'])->firstOrFail();
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-        return response()->json(['access_token' => $token,'user'=>$user]);
+        //$user = User::where('email',$request['email'])->firstOrFail();
+
+        $token = $user[0]->createToken('auth_token')->plainTextToken;
+        return response()->json(['access_token' => $token,'user'=>$user[0]]);
     }
 }
