@@ -1,0 +1,339 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Pedidos Chips",
+        "description": "Api Pedidos Chips",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://chips.myposgt.net/apk2"
+        },
+        {
+            "url": "http://chips.myposgt.net/apk2"
+        }
+    ],
+    "paths": {
+        "/api/login": {
+            "get": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Iniciar Sesión",
+                "operationId": "e3ed30977b8fa50dd9c2f2a132ed09e9",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "firstname": {
+                                                "type": "string",
+                                                "example": "Estaurdo"
+                                            },
+                                            "middlename": {
+                                                "type": "string",
+                                                "example": "Luis"
+                                            },
+                                            "lastname": {
+                                                "type": "string",
+                                                "example": "Perez"
+                                            },
+                                            "username": {
+                                                "type": "string",
+                                                "example": "mperez"
+                                            },
+                                            "avatar": {
+                                                "type": "string",
+                                                "example": "perfil.png"
+                                            },
+                                            "last_login": {
+                                                "type": "string",
+                                                "example": "2023-05-12"
+                                            },
+                                            "type": {
+                                                "type": "number",
+                                                "example": "1"
+                                            },
+                                            "date_added": {
+                                                "type": "string",
+                                                "example": "2023-05-26 16:58:06"
+                                            },
+                                            "date_updated": {
+                                                "type": "string",
+                                                "example": "2023-05-26 16:58:23"
+                                            },
+                                            "fullname": {
+                                                "type": "string",
+                                                "example": "Estuardo Luis Perez"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "example@example.com"
+                                            },
+                                            "email_verified_at": {
+                                                "type": "string",
+                                                "example": "2023-05-26 16:58:23"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/visitas": {
+            "get": {
+                "tags": [
+                    "Visitas"
+                ],
+                "summary": "Lista todas las visitas",
+                "operationId": "6ada640960c5e716a9e4a60671cd1c09",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "observaciones": {
+                                                "type": "string",
+                                                "example": "Visita realizada hoy."
+                                            },
+                                            "latitud": {
+                                                "type": "string",
+                                                "example": "231231231"
+                                            },
+                                            "longitud": {
+                                                "type": "string",
+                                                "example": "342342333"
+                                            },
+                                            "foto": {
+                                                "type": "string",
+                                                "example": "public/ci9nAbrct9qqm9f3EPRC9djpk6b55Qy6eflfbagD.png"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Visitas"
+                ],
+                "summary": "Crear visita",
+                "operationId": "dd709bef850d51f3ce5cce0f28ae1e2e",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "observaciones": {
+                                        "description": "observaciones",
+                                        "type": "string"
+                                    },
+                                    "latitud": {
+                                        "description": "latitud",
+                                        "type": "string"
+                                    },
+                                    "longitud": {
+                                        "description": "longitud",
+                                        "type": "string"
+                                    },
+                                    "foto": {
+                                        "description": "foto de la visita",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "observaciones": {
+                                                        "type": "string",
+                                                        "example": "Visita realizada hoy."
+                                                    },
+                                                    "latitud": {
+                                                        "type": "string",
+                                                        "example": "231231231"
+                                                    },
+                                                    "longitud": {
+                                                        "type": "string",
+                                                        "example": "342342333"
+                                                    },
+                                                    "foto": {
+                                                        "type": "string",
+                                                        "example": "public/ci9nAbrct9qqm9f3EPRC9djpk6b55Qy6eflfbagD.png"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/foto/{path}": {
+            "get": {
+                "tags": [
+                    "Visitas"
+                ],
+                "summary": "Obtener foto de visita",
+                "operationId": "36de6ae9cd686b6df43145d50af21a02",
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/misvisitas": {
+            "get": {
+                "tags": [
+                    "Visitas"
+                ],
+                "summary": "Lista todas las visitas de un usuario",
+                "operationId": "a56b23295904628d3a0ad4687a1374eb",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "observaciones": {
+                                                "type": "string",
+                                                "example": "Visita realizada hoy."
+                                            },
+                                            "latitud": {
+                                                "type": "string",
+                                                "example": "231231231"
+                                            },
+                                            "longitud": {
+                                                "type": "string",
+                                                "example": "342342333"
+                                            },
+                                            "foto": {
+                                                "type": "string",
+                                                "example": "public/ci9nAbrct9qqm9f3EPRC9djpk6b55Qy6eflfbagD.png"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "http",
+                "description": "Laravel Sanctum token authentication",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
