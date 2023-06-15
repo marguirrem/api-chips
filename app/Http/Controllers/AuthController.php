@@ -67,8 +67,6 @@ class AuthController extends Controller
      *              property="user",
      *              type="object",
      * 
-     *               
-     *              
      *                     @OA\Property(
      *                         property="id",
      *                         type="string",

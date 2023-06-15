@@ -241,13 +241,13 @@
                 ]
             }
         },
-        "/api/foto/{path}": {
+        "/api/visitas/foto/{path}": {
             "get": {
                 "tags": [
                     "Visitas"
                 ],
                 "summary": "Obtener foto de visita",
-                "operationId": "36de6ae9cd686b6df43145d50af21a02",
+                "operationId": "3ca6dcc20315f57dbb4b8ca6cc9ebb51",
                 "parameters": [
                     {
                         "name": "path",
@@ -292,28 +292,33 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "properties": {
-                                            "observaciones": {
-                                                "type": "string",
-                                                "example": "Visita realizada hoy."
-                                            },
-                                            "latitud": {
-                                                "type": "string",
-                                                "example": "231231231"
-                                            },
-                                            "longitud": {
-                                                "type": "string",
-                                                "example": "342342333"
-                                            },
-                                            "foto": {
-                                                "type": "string",
-                                                "example": "public/ci9nAbrct9qqm9f3EPRC9djpk6b55Qy6eflfbagD.png"
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "observaciones": {
+                                                        "type": "string",
+                                                        "example": "Visita realizada hoy."
+                                                    },
+                                                    "latitud": {
+                                                        "type": "string",
+                                                        "example": "231231231"
+                                                    },
+                                                    "longitud": {
+                                                        "type": "string",
+                                                        "example": "342342333"
+                                                    },
+                                                    "foto": {
+                                                        "type": "string",
+                                                        "example": "public/ci9nAbrct9qqm9f3EPRC9djpk6b55Qy6eflfbagD.png"
+                                                    }
+                                                },
+                                                "type": "object"
                                             }
-                                        },
-                                        "type": "object"
-                                    }
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
