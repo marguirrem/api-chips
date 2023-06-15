@@ -20,12 +20,14 @@ Route::middleware('auth:sanctum')->get('/misvisitas', function (Request $request
 });
 */
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('visitas',[VisitController::class, 'index']);
+    
     Route::get('misvisitas',[VisitController::class, 'myVisits']);
     Route::post('visitas',[VisitController::class, 'store']);
-    Route::get('foto/{path}', [VisitController::class, 'getImage'])->where('path', '.*');
+    Route::get('visitas/foto/{path}', [VisitController::class, 'getImage'])->where('path', '.*');
 
 });
 
+Route::get('visitas',[VisitController::class, 'index']);
+
 Route::post('register', [AuthController::class,'register']);
-Route::get('login', [AuthController::class,'login']);
+Route::post('login', [AuthController::class,'login']);

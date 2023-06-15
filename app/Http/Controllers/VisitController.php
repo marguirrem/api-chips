@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 *             description="Api Pedidos Chips"
 * )
 *
-* @OA\Server(url="http://chips.myposgt.net/apk2")
+* @OA\Server(url="localhost:8000")
 *
 */
 
@@ -25,7 +25,6 @@ class VisitController extends Controller
      * @OA\Get (
      *     path="/api/visitas",
      *     tags={"Visitas"},
-     *  security={ {"sanctum": {} }},
      *     @OA\Response(
      *         response=200,
      *         description="ok",
@@ -64,7 +63,7 @@ class VisitController extends Controller
     public function index()
     {
         //
-        $visitas = Visit::all();
+        $visitas = Visit::simplePaginate(2);
         return $visitas;
     }
 
@@ -235,6 +234,7 @@ class VisitController extends Controller
      */
     public function myVisits(Request $request){
 
-        return $request->user()->visitas;
+        return response()->json(["data" =>$request->user()->visitas ]);
+        
     }
 }

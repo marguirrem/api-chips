@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 /**
 *
-* @OA\Server(url="http://chips.myposgt.net/apk2")
+* @OA\Server(url="http://ec2-107-20-22-188.compute-1.amazonaws.com")
 *
 */
 
@@ -41,7 +41,7 @@ class AuthController extends Controller
 
      /**
      * Iniciar Sesión
-     * @OA\Get (
+     * @OA\Post (
      *     path="/api/login",
      *     tags={"Login"},
      * @OA\Parameter(
@@ -61,9 +61,14 @@ class AuthController extends Controller
      *         response=200,
      *         description="ok",
      *         @OA\JsonContent(
-     *              type="array",
-     *                 @OA\Items(
-     *                     type="object",
+     *       
+     *             @OA\Property(property="access_token", type="string", example="4|i3hT5WlPnrA6D3ulyyfLx7PaTYSuIpLO4eOpAasr"),
+     *             @OA\Property(
+     *              property="user",
+     *              type="object",
+     * 
+     *               
+     *              
      *                     @OA\Property(
      *                         property="id",
      *                         type="string",
@@ -102,7 +107,7 @@ class AuthController extends Controller
      *                      @OA\Property(
      *                         property="type",
      *                         type="number",
-     *                         example="1"
+     *                         example="2"
      *                     ),
      *                      @OA\Property(
      *                         property="date_added",
@@ -129,6 +134,8 @@ class AuthController extends Controller
      *                         type="string",
      *                         example="2023-05-26 16:58:23"
      *                     )
+     * 
+     * 
      *             )
      *         )
      *     )
