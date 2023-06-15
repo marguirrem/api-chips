@@ -169,7 +169,7 @@ class VisitController extends Controller
     /**
      * Obtener foto de visita
      * @OA\Get (
-     *     path="/api/foto/{path}",
+     *     path="/api/visitas/foto/{path}",
      *     tags={"Visitas"},
      *  security={ {"sanctum": {} }},
      *  @OA\Parameter(
