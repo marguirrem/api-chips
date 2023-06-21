@@ -23,7 +23,7 @@ class VisitController extends Controller
     /**
      * Lista todas las visitas
      * @OA\Get (
-     *     path="/api/visitas",
+     *     path="/api/visits",
      *     tags={"Visitas"},
      *     @OA\Response(
      *         response=200,
@@ -71,7 +71,7 @@ class VisitController extends Controller
     /**
      * Crear visita
      * @OA\Post (
-     *     path="/api/visitas",
+     *     path="/api/visits",
      *     tags={"Visitas"}, 
      *  security={ {"sanctum": {} }},
      *  @OA\RequestBody(
@@ -163,7 +163,7 @@ class VisitController extends Controller
        
         $visita->save();
 
-        return response()->json(['visita' => $visita],201);
+        return response()->json(['visit' => $visita],201);
     }
     
     /**
@@ -195,7 +195,7 @@ class VisitController extends Controller
     /**
      * Lista todas las visitas de un usuario
      * @OA\Get (
-     *     path="/api/misvisitas",
+     *     path="/api/myvisits",
      *     tags={"Visitas"},
      *  security={ {"sanctum": {} }},
      *     @OA\Response(

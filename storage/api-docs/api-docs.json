@@ -10,7 +10,7 @@
             "url": "http://ec2-107-20-22-188.compute-1.amazonaws.com"
         },
         {
-            "url": "localhost:8000"
+            "url": "http://ec2-107-20-22-188.compute-1.amazonaws.com"
         }
     ],
     "paths": {
@@ -120,13 +120,13 @@
                 ]
             }
         },
-        "/api/visitas": {
+        "/api/visits": {
             "get": {
                 "tags": [
                     "Visitas"
                 ],
                 "summary": "Lista todas las visitas",
-                "operationId": "6ada640960c5e716a9e4a60671cd1c09",
+                "operationId": "59bc502e31c31bcb9d32d86e06260de5",
                 "responses": {
                     "200": {
                         "description": "ok",
@@ -166,7 +166,7 @@
                     "Visitas"
                 ],
                 "summary": "Crear visita",
-                "operationId": "dd709bef850d51f3ce5cce0f28ae1e2e",
+                "operationId": "2ff60d5091a706b6942379521ae9074f",
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
@@ -278,13 +278,13 @@
                 ]
             }
         },
-        "/api/misvisitas": {
+        "/api/myvisits": {
             "get": {
                 "tags": [
                     "Visitas"
                 ],
                 "summary": "Lista todas las visitas de un usuario",
-                "operationId": "a56b23295904628d3a0ad4687a1374eb",
+                "operationId": "9a984962965afa7b44a3fe9d9962c601",
                 "responses": {
                     "200": {
                         "description": "ok",
