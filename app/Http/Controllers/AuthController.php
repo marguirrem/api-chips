@@ -44,18 +44,13 @@ class AuthController extends Controller
      * @OA\Post (
      *     path="/api/login",
      *     tags={"Login"},
-     * @OA\Parameter(
-     *         in="query",
-     *         name="username",
-     *         required=true,
-     *         @OA\Schema(type="string")
-     *     ),
-     * @OA\Parameter(
-     *         in="query",
-     *         name="password",
-     *         required=true,
-     *         @OA\Schema(type="string")
-     *     ),
+    *@OA\RequestBody(
+    *  @OA\JsonContent(
+    *    type="object",
+    *    @OA\Property(property="username", type="string"),
+    *@OA\Property(property="password", type="string"),
+    *  )
+    *),
      *  security={ {"sanctum": {} }},
      *     @OA\Response(
      *         response=200,

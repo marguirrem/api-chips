@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 *             description="Api Pedidos Chips"
 * )
 *
-* @OA\Server(url="localhost:8000")
+* @OA\Server(url="http://ec2-107-20-22-188.compute-1.amazonaws.com")
 *
 */
 
@@ -236,7 +236,8 @@ class VisitController extends Controller
      */
     public function myVisits(Request $request){
 
-        return response()->json(["data" =>$request->user()->visitas ]);
+       // $user = User::find()
+        return response()->json(["data" =>$request->user()->visitas()->simplePaginate(10) ]);
         
     }
 }

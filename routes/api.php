@@ -21,8 +21,8 @@ Route::middleware('auth:sanctum')->get('/misvisitas', function (Request $request
 */
 Route::middleware(['auth:sanctum'])->group(function () {
     
-    Route::get('misvisitas',[VisitController::class, 'myVisits']);
-    Route::post('visitas',[VisitController::class, 'store']);
+    Route::get('myvisits',[VisitController::class, 'myVisits']);
+    Route::post('visits',[VisitController::class, 'store']);
     Route::get('visitas/foto/{path}', [VisitController::class, 'getImage'])->where('path', '.*');
 
 });
