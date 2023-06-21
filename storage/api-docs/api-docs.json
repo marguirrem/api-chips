@@ -240,13 +240,13 @@
                 ]
             }
         },
-        "/api/visitas/foto/{path}": {
+        "/api/visits/photo/{path}": {
             "get": {
                 "tags": [
                     "Visitas"
                 ],
                 "summary": "Obtener foto de visita",
-                "operationId": "3ca6dcc20315f57dbb4b8ca6cc9ebb51",
+                "operationId": "3a37eea843c87088dcefe5a8fe7febcd",
                 "parameters": [
                     {
                         "name": "path",

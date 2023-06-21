@@ -23,7 +23,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::get('myvisits',[VisitController::class, 'myVisits']);
     Route::post('visits',[VisitController::class, 'store']);
-    Route::get('visitas/foto/{path}', [VisitController::class, 'getImage'])->where('path', '.*');
+    Route::get('visits/photo/{path}', [VisitController::class, 'getImage'])->where('path', '.*');
 
 });
 
