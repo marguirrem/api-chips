@@ -120,13 +120,13 @@
                 ]
             }
         },
-        "/api/visits": {
+        "/api/visitas": {
             "get": {
                 "tags": [
                     "Visitas"
                 ],
                 "summary": "Lista todas las visitas",
-                "operationId": "59bc502e31c31bcb9d32d86e06260de5",
+                "operationId": "6ada640960c5e716a9e4a60671cd1c09",
                 "responses": {
                     "200": {
                         "description": "ok",
@@ -160,7 +160,9 @@
                         }
                     }
                 }
-            },
+            }
+        },
+        "/api/visits": {
             "post": {
                 "tags": [
                     "Visitas"

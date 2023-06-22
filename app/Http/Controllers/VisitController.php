@@ -23,7 +23,7 @@ class VisitController extends Controller
     /**
      * Lista todas las visitas
      * @OA\Get (
-     *     path="/api/visits",
+     *     path="/api/visitas",
      *     tags={"Visitas"},
      *     @OA\Response(
      *         response=200,
@@ -63,7 +63,7 @@ class VisitController extends Controller
     public function index()
     {
         //
-        $visitas = Visit::simplePaginate(2);
+        $visitas = Visit::paginate(10);
         return $visitas;
     }
 
