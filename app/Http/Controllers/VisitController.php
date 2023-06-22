@@ -20,53 +20,7 @@ use Illuminate\Support\Facades\Storage;
 
 class VisitController extends Controller
 {
-    /**
-     * Lista todas las visitas
-     * @OA\Get (
-     *     path="/api/visitas",
-     *     tags={"Visitas"},
-     *     @OA\Response(
-     *         response=200,
-     *         description="ok",
-     *         @OA\JsonContent(
-     *           
-     *                 type="array",
-     *                 @OA\Items(
-     *                     type="object",
-     *                     @OA\Property(
-     *                         property="observaciones",
-     *                         type="string",
-     *                         example="Visita realizada hoy."
-     *                     ),
-     *                     @OA\Property(
-     *                         property="latitud",
-     *                         type="string",
-     *                         example="231231231"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="longitud",
-     *                         type="string",
-     *                         example="342342333"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="foto",
-     *                         type="string",
-     *                         example="public/ci9nAbrct9qqm9f3EPRC9djpk6b55Qy6eflfbagD.png"
-     *                     )
-     *                 )
-     *             
-     *         )
-     *     )
-     * )
-     */
-
-    public function index()
-    {
-        //
-        $visitas = Visit::paginate(10);
-        return $visitas;
-    }
-
+   
  
     /**
      * Crear visita
@@ -151,7 +105,7 @@ class VisitController extends Controller
      * @OA\Get (
      *     path="/api/visits/photo/{path}",
      *     tags={"Visitas"},
-     *  security={ {"sanctum": {} }},
+    
      *  @OA\Parameter(
      *         in="path",
      *         name="path",

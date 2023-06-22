@@ -120,48 +120,6 @@
                 ]
             }
         },
-        "/api/visitas": {
-            "get": {
-                "tags": [
-                    "Visitas"
-                ],
-                "summary": "Lista todas las visitas",
-                "operationId": "6ada640960c5e716a9e4a60671cd1c09",
-                "responses": {
-                    "200": {
-                        "description": "ok",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "properties": {
-                                            "observaciones": {
-                                                "type": "string",
-                                                "example": "Visita realizada hoy."
-                                            },
-                                            "latitud": {
-                                                "type": "string",
-                                                "example": "231231231"
-                                            },
-                                            "longitud": {
-                                                "type": "string",
-                                                "example": "342342333"
-                                            },
-                                            "foto": {
-                                                "type": "string",
-                                                "example": "public/ci9nAbrct9qqm9f3EPRC9djpk6b55Qy6eflfbagD.png"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/api/visits": {
             "post": {
                 "tags": [
@@ -252,12 +210,7 @@
                     "404": {
                         "description": "Resource Not Found"
                     }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
+                }
             }
         },
         "/api/myvisits": {
