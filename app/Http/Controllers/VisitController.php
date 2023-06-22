@@ -182,9 +182,7 @@ class VisitController extends Controller
      *         response=200,
      *         description="ok",
      *         @OA\JsonContent(
-     *             @OA\Property(
-     *                
-     *                 type="array",
+     *         type="array",
 
      *                 @OA\Items(
      *                     type="object",
@@ -208,7 +206,7 @@ class VisitController extends Controller
      *                         type="string",
      *                         example="public/ci9nAbrct9qqm9f3EPRC9djpk6b55Qy6eflfbagD.png"
      *                     )
-     *                 )
+     *                 
      *             )
      *         )
      *     )
