@@ -108,32 +108,12 @@ class VisitController extends Controller
      *         response=201,
      *         description="Created",
      *         @OA\JsonContent(
-     *             @OA\Property(
-     *                 type="array",
-     *                 @OA\Items(
-     *                     type="object",
      *                     @OA\Property(
-     *                         property="observaciones",
+     *                         property="id",
      *                         type="string",
-     *                         example="Visita realizada hoy."
-     *                     ),
-     *                     @OA\Property(
-     *                         property="latitud",
-     *                         type="string",
-     *                         example="231231231"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="longitud",
-     *                         type="string",
-     *                         example="342342333"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="foto",
-     *                         type="string",
-     *                         example="public/ci9nAbrct9qqm9f3EPRC9djpk6b55Qy6eflfbagD.png"
+     *                         example="22"
      *                     )
-     *                 )
-     *             )
+     *                 
      *         )
      *     )
      * )
@@ -163,7 +143,7 @@ class VisitController extends Controller
        
         $visita->save();
 
-        return response()->json(['visit' => $visita],201);
+        return response()->json(['id' => $visita->id],201);
     }
     
     /**
@@ -203,7 +183,7 @@ class VisitController extends Controller
      *         description="ok",
      *         @OA\JsonContent(
      *             @OA\Property(
-     *                 property ="data",
+     *                
      *                 type="array",
 
      *                 @OA\Items(
@@ -236,8 +216,7 @@ class VisitController extends Controller
      */
     public function myVisits(Request $request){
 
-       // $user = User::find()
-        return response()->json(["data" =>$request->user()->visitas()->simplePaginate(10) ]);
+        return response()->json($request->user()->visitas()->Paginate(10));
         
     }
 }

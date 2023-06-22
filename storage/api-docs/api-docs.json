@@ -204,29 +204,9 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "": {
-                                            "type": "array",
-                                            "items": {
-                                                "properties": {
-                                                    "observaciones": {
-                                                        "type": "string",
-                                                        "example": "Visita realizada hoy."
-                                                    },
-                                                    "latitud": {
-                                                        "type": "string",
-                                                        "example": "231231231"
-                                                    },
-                                                    "longitud": {
-                                                        "type": "string",
-                                                        "example": "342342333"
-                                                    },
-                                                    "foto": {
-                                                        "type": "string",
-                                                        "example": "public/ci9nAbrct9qqm9f3EPRC9djpk6b55Qy6eflfbagD.png"
-                                                    }
-                                                },
-                                                "type": "object"
-                                            }
+                                        "id": {
+                                            "type": "string",
+                                            "example": "22"
                                         }
                                     },
                                     "type": "object"
@@ -294,7 +274,7 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "data": {
+                                        "": {
                                             "type": "array",
                                             "items": {
                                                 "properties": {
