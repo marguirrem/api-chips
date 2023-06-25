@@ -92,6 +92,21 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
+        
+        'sqlsrvchips' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '138.128.150.199'),
+            'port' => env('DB_PORT', '1450'),
+            'database' => env('DB_DATABASE', 'CC62_Chips'),
+            'username' => env('DB_USERNAME', 'AppUsuario'),
+            'password' => env('DB_PASSWORD', 'Chompi2023'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            // 'encrypt' => env('DB_ENCRYPT', 'yes'),
+            // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+        ],
 
     ],
 

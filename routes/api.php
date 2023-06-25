@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,6 +28,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 });
 Route::get('visits/photo/{path}', [VisitController::class, 'getImage'])->where('path', '.*');
+
+Route::get('clients',[ClientController::class,'index']);
+
+Route::get('clients/search/{value}',[ClientController::class,'search']);
 
 Route::post('register', [AuthController::class,'register']);
 Route::post('login', [AuthController::class,'login']);

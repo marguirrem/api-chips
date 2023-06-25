@@ -11,6 +11,9 @@
         },
         {
             "url": "http://ec2-107-20-22-188.compute-1.amazonaws.com"
+        },
+        {
+            "url": "http://ec2-107-20-22-188.compute-1.amazonaws.com"
         }
     ],
     "paths": {
@@ -118,6 +121,49 @@
                         "sanctum": []
                     }
                 ]
+            }
+        },
+        "/api/clients/search/{value}": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Buscar clientes",
+                "operationId": "4b1748fce160cc269121538590d5e3c1",
+                "parameters": [
+                    {
+                        "name": "value",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/api/visits": {
