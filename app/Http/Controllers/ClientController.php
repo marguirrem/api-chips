@@ -33,7 +33,7 @@ class ClientController extends Controller
      * @OA\Get (
      *     path="/api/clients/search/{value}",
      *     tags={"Clientes"},
-    
+     *  security={ {"sanctum": {} }},
      *  @OA\Parameter(
      *         in="path",
      *         name="value",
