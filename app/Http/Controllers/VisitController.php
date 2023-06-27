@@ -168,7 +168,16 @@ class VisitController extends Controller
      */
     public function myVisits(Request $request){
 
-        return response()->json($request->user()->visitas()->Paginate(10));
+        $data = $request->user()->visitas()->orderBy('created_at', 'desc')->Paginate(10);
+        $data = json_encode($data);
+        $data = json_Decode($data);
+        
+       
+        foreach ( $data->data as $item) {
+            $item->foto = 'http://ec2-107-20-22-188.compute-1.amazonaws.com/api/visits/photo/'. $item->foto;
+        }
+
+        return response()->json($data);
         
     }
 }
