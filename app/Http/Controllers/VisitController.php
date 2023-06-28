@@ -6,6 +6,8 @@ use App\Models\Visit;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
+
 /**
 * @OA\Info(
 *             title="Pedidos Chips", 
@@ -79,12 +81,11 @@ class VisitController extends Controller
             'latitud' => 'required',
             'longitud' => 'required',
             
-            'foto' =>'image'
+            'foto' =>'sometimes|image'
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->errors());
-
+            return response()->json([$validator->errors()],400);
         }
 
         $visita = (new Visit)->fill($request->all());
@@ -92,7 +93,7 @@ class VisitController extends Controller
         $visita->user_id = $request->user()->id;
 
         if($request->hasFile('foto')){
-           $visita->foto =  $request->file('foto')->store('public');
+           $visita->foto = URL::to('').'/api/visits/photo/'. $request->file('foto')->store('public');
         }
        
         $visita->save();
@@ -172,10 +173,10 @@ class VisitController extends Controller
         $data = json_encode($data);
         $data = json_Decode($data);
         
-       
+       /*
         foreach ( $data->data as $item) {
-            $item->foto = 'http://ec2-107-20-22-188.compute-1.amazonaws.com/api/visits/photo/'. $item->foto;
-        }
+            $item->foto = URL::to('').'/api/visits/photo/'. $item->foto;
+        }*/
 
         return response()->json($data);
         
