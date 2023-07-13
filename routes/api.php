@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,7 +26,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('myvisits',[VisitController::class, 'myVisits']);
     Route::post('visits',[VisitController::class, 'store']);
    
-    Route::get('clients/search/{value}',[ClientController::class,'search']);    
+    Route::get('clients/search/{value}',[ClientController::class,'search']);   
+
+    Route::get('products/search/{value}',[ProductController::class,'search']);   
+    Route::get('products',[ProductController::class,'index']);    
 
 });
 Route::get('visits/photo/{path}', [VisitController::class, 'getImage'])->where('path', '.*');

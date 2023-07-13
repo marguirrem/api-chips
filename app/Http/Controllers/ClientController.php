@@ -5,18 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 
-/**
-
-* @OA\Server(url="http://ec2-107-20-22-188.compute-1.amazonaws.com")
-*
-*/
-
 
 class ClientController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
+{   
     public function index()
     {
         //$data = Time::on('mysql_timer')->with(['user'])->paginate($length);
@@ -56,9 +47,10 @@ class ClientController extends Controller
      * ),
      *)
      */
-    public function search($value){
+
+     public function search($value){
       
-        $data = Client::on('sqlsrvchips')->selectRaw("TRIM(Cliente) AS Cliente, TRIM(IDTributario) AS IDTributario, TRIM(RazonSocial) AS RazonSocial,Direccion as Direccion, FORMAT(CreditoLimite, 'C', 'es-gt') AS CreditoLimite,  CAST(Saldo AS DECIMAL(16,2))  AS Saldo")
+        $data = Product::on('sqlsrvchips')->selectRaw("TRIM(Cliente) AS Cliente, TRIM(IDTributario) AS IDTributario, TRIM(RazonSocial) AS RazonSocial,Direccion as Direccion, FORMAT(CreditoLimite, 'C', 'es-gt') AS CreditoLimite,  CAST(Saldo AS DECIMAL(16,2))  AS Saldo")
         ->where('Cliente','LIKE','%'. $value.'%')
         ->orWhere('NombreComercial', 'like', '%' . $value . '%')->with('invoices')->paginate(10);
 
@@ -67,5 +59,6 @@ class ClientController extends Controller
         }
         return response()->json(["error" => 'Not found'],404);
     }
+
 
 }
