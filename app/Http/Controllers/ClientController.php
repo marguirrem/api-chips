@@ -50,7 +50,7 @@ class ClientController extends Controller
 
      public function search($value){
       
-        $data = Product::on('sqlsrvchips')->selectRaw("TRIM(Cliente) AS Cliente, TRIM(IDTributario) AS IDTributario, TRIM(RazonSocial) AS RazonSocial,Direccion as Direccion, FORMAT(CreditoLimite, 'C', 'es-gt') AS CreditoLimite,  CAST(Saldo AS DECIMAL(16,2))  AS Saldo")
+        $data = Client::on('sqlsrvchips')->selectRaw("TRIM(Cliente) AS Cliente, TRIM(IDTributario) AS IDTributario, TRIM(RazonSocial) AS RazonSocial,Direccion as Direccion, FORMAT(CreditoLimite, 'C', 'es-gt') AS CreditoLimite,  CAST(Saldo AS DECIMAL(16,2))  AS Saldo")
         ->where('Cliente','LIKE','%'. $value.'%')
         ->orWhere('NombreComercial', 'like', '%' . $value . '%')->with('invoices')->paginate(10);
 
