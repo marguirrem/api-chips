@@ -10,6 +10,9 @@
             "url": "http://ec2-107-20-22-188.compute-1.amazonaws.com"
         },
         {
+            "url": "http://localhost:8000"
+        },
+        {
             "url": "http://ec2-107-20-22-188.compute-1.amazonaws.com"
         }
     ],
@@ -156,6 +159,152 @@
                                         }
                                     },
                                     "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/mypayments": {
+            "get": {
+                "tags": [
+                    "Cobros"
+                ],
+                "summary": "Lista los cobros de un usuario",
+                "operationId": "2fda06b7bc1883b154b02981c9a0988c",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "payment_id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "cantidad": {
+                                                "type": "string",
+                                                "example": "2500.00"
+                                            },
+                                            "fecha_pago": {
+                                                "type": "string",
+                                                "example": "2023-07-14 06:14:14"
+                                            },
+                                            "cliente_id": {
+                                                "type": "string",
+                                                "example": "00554"
+                                            },
+                                            "tipo_abono": {
+                                                "type": "string",
+                                                "example": "Efectivo"
+                                            },
+                                            "vendedor_id": {
+                                                "type": "string",
+                                                "example": "6"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/payments": {
+            "post": {
+                "tags": [
+                    "Cobros"
+                ],
+                "summary": "Registrar cobro",
+                "operationId": "5e2794ba3d3c64e70873367505e4a751",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "cantidad": {
+                                        "type": "string"
+                                    },
+                                    "cliente_id": {
+                                        "type": "string"
+                                    },
+                                    "tipo_abono": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "6"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/typepayments": {
+            "get": {
+                "tags": [
+                    "Cobros"
+                ],
+                "summary": "Lista los tipos de abono",
+                "operationId": "9a800687043bf71cae456dbb8f9c62c7",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "tipo_id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "descripcion": {
+                                                "type": "string",
+                                                "example": "Efectivo"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
                                 }
                             }
                         }

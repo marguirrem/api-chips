@@ -33,7 +33,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('products',[ProductController::class,'index']);    
 
     Route::get('mypayments',[PaymentController::class,'index']);   
-    Route::post('payments',[PaymentController::class,'store']);    
+    Route::post('payments',[PaymentController::class,'store']);   
+    Route::get('typepayments',[PaymentController::class,'tipos_abonos']);  
+    
     
 });
 Route::get('visits/photo/{path}', [VisitController::class, 'getImage'])->where('path', '.*');
