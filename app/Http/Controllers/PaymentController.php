@@ -67,7 +67,7 @@ class PaymentController extends Controller
      */
     public function index(Request $request)
     {
-        $payments = Payment::where('vendedor_id','=', $request->user()->id)->paginate(10);
+        $payments = Payment::where('vendedor_id','=', $request->user()->id)->orderBy('fecha_pago', 'desc')->paginate(10);
 
         return response()->json($payments);
     }
