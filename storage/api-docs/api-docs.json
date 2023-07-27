@@ -231,20 +231,32 @@
                 "tags": [
                     "Cobros"
                 ],
-                "summary": "Registrar cobro",
+                "summary": "Crear cobro",
                 "operationId": "5e2794ba3d3c64e70873367505e4a751",
                 "requestBody": {
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "properties": {
+                                    "observaciones": {
+                                        "description": "observaciones",
+                                        "type": "string"
+                                    },
                                     "cantidad": {
+                                        "description": "cantidad",
                                         "type": "string"
                                     },
                                     "cliente_id": {
+                                        "description": "cliente_id",
                                         "type": "string"
                                     },
+                                    "foto": {
+                                        "description": "foto de la visita",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
                                     "tipo_abono": {
+                                        "description": "tipo_abono",
                                         "type": "string"
                                     }
                                 },
@@ -255,14 +267,14 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "ok",
+                        "description": "Created",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "id": {
                                             "type": "string",
-                                            "example": "6"
+                                            "example": "22"
                                         }
                                     },
                                     "type": "object"
@@ -315,6 +327,39 @@
                         "sanctum": []
                     }
                 ]
+            }
+        },
+        "/api/payments/photo/{path}": {
+            "get": {
+                "tags": [
+                    "Cobros"
+                ],
+                "summary": "Obtener foto del cobro",
+                "operationId": "4e9e8f0e47ae3e58e8c7f08e5252a429",
+                "parameters": [
+                    {
+                        "name": "path",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
             }
         },
         "/api/products": {

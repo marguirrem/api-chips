@@ -40,5 +40,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 Route::get('visits/photo/{path}', [VisitController::class, 'getImage'])->where('path', '.*');
 
+Route::get('payments/photo/{path}', [PaymentController::class, 'getImage'])->where('path', '.*');
+
 Route::post('login', [AuthController::class,'login']);
 

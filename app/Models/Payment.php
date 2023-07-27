@@ -25,6 +25,8 @@ class Payment extends Model
         'cliente_id',
         'tipo_abono',
         'vendedor_id',
+        'foto',
+        'observaciones',
     ];
     public $timestamps = false;
 }

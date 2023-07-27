@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\TypePayment;
 use Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 /**
 *
@@ -71,29 +73,58 @@ class PaymentController extends Controller
 
         return response()->json($payments);
     }
-
+  
  
-   /**
-     * Registrar cobro
+    /**
+     * Crear cobro
      * @OA\Post (
      *     path="/api/payments",
-     *     tags={"Cobros"},
-    *@OA\RequestBody(
-    *  @OA\JsonContent(
-    *    type="object",
-    *    @OA\Property(property="cantidad", type="string"),
-    *    @OA\Property(property="cliente_id", type="string"),
-    *    @OA\Property(property="tipo_abono", type="string"),
-    *  )
-    *),
+     *     tags={"Cobros"}, 
      *  security={ {"sanctum": {} }},
+     *  @OA\RequestBody(
+    * @OA\MediaType(
+    * mediaType="multipart/form-data",
+    * @OA\Schema(
+    * type="object",
+        * @OA\Property(
+    * description="observaciones",
+    * property="observaciones",
+    * type="string"
+    * ),
+        * @OA\Property(
+    * description="cantidad",
+    * property="cantidad",
+    * type="string"
+    * ),
+        * @OA\Property(
+    * description="cliente_id",
+    * property="cliente_id",
+    * type="string"
+    * ),
+    * @OA\Property(
+    * description="foto de la visita",
+    * property="foto",
+    * type="string",
+    * format="binary",
+    * ),
+            * @OA\Property(
+    * description="tipo_abono",
+    * property="tipo_abono",
+    * type="string"
+    * ),
+    * )
+    * )
+    * ),
      *     @OA\Response(
      *         response=201,
-     *         description="ok",
+     *         description="Created",
      *         @OA\JsonContent(
-     *             @OA\Property(property="id", type="string", example="6"),
- 
-     *             )
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="string",
+     *                         example="22"
+     *                     )
+     *                 
      *         )
      *     )
      * )
@@ -103,7 +134,9 @@ class PaymentController extends Controller
         $validator = Validator::make($request->all(),[
             'cliente_id' =>'required|min:5',
             'tipo_abono' => 'required',
-            'cantidad' =>'required'
+            'cantidad' =>'required',
+            'foto' =>'sometimes|image',
+            'observaciones' =>'required|min:5'
         ]);
 
         if($validator->fails()){
@@ -113,6 +146,10 @@ class PaymentController extends Controller
         $payment = (new Payment)->fill($request->all());
 
         $payment->vendedor_id = $request->user()->id;
+
+        if($request->hasFile('foto')){
+            $payment->foto = URL::to('').'/api/payments/photo/'. $request->file('foto')->store('public');
+         }
 
         $payment->save();
 
@@ -152,5 +189,30 @@ class PaymentController extends Controller
         $type_payments = TypePayment::paginate(10);
 
         return response()->json($type_payments);
+    }
+
+     /**
+     * Obtener foto del cobro
+     * @OA\Get (
+     *     path="/api/payments/photo/{path}",
+     *     tags={"Cobros"},
+    
+     *  @OA\Parameter(
+     *         in="path",
+     *         name="path",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     * @OA\Response(response=200,description="successful operation",
+     *          @OA\MediaType(mediaType="application/json")
+     *      ),
+     * @OA\Response(response=400, description="Bad request"),
+     * @OA\Response(response=404, description="Resource Not Found"),
+     *)
+     */
+    public function getImage($path){
+        $image = Storage::get($path);
+        //dd (Storage::response($image));
+        return response($image, 200)->header('Content-Type', 'image/jpg');
     }
 }
