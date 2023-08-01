@@ -123,6 +123,44 @@
                 ]
             }
         },
+        "/api/carriers": {
+            "get": {
+                "tags": [
+                    "Transportistas"
+                ],
+                "summary": "Listar transportistas",
+                "operationId": "d5410200caf20e4bc509248bbd20e984",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/clients/search/{value}": {
             "get": {
                 "tags": [

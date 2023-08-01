@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CarrierController;
 
 
 /*
@@ -28,10 +29,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::get('myvisits',[VisitController::class, 'myVisits']);
     Route::post('visits',[VisitController::class, 'store']);
-   
-    Route::get('clients/search/{value}',[ClientController::class,'search']);   
 
-    Route::get('products',[ProductController::class,'search']);   
+    Route::get('clients/search/{value}',[ClientController::class,'search']); 
+
+    Route::get('products',[ProductController::class,'search']); 
+    Route::get('carriers',[CarrierController::class,'index']);   
        
 
     Route::get('mypayments',[PaymentController::class,'index']);   
