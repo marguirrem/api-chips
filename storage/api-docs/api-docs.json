@@ -210,6 +210,14 @@
                                             "vendedor_id": {
                                                 "type": "string",
                                                 "example": "6"
+                                            },
+                                            "foto": {
+                                                "type": "string",
+                                                "example": "http://domain/api/payments/photo/ddkdjdjadldfjldfadfdfsad.png"
+                                            },
+                                            "observaciones": {
+                                                "type": "string",
+                                                "example": "Cliente abona a factura no. xxxx"
                                             }
                                         },
                                         "type": "object"
@@ -367,51 +375,12 @@
                 "tags": [
                     "Productos"
                 ],
-                "summary": "Listar productos",
-                "operationId": "1bfaa78d1c2c3848ab8165c5dadcad3e",
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {}
-                        }
-                    },
-                    "404": {
-                        "description": "Resource Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Not found"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            }
-        },
-        "/api/products/search/{value}": {
-            "get": {
-                "tags": [
-                    "Productos"
-                ],
-                "summary": "Buscar productos",
-                "operationId": "5ecdd99700ef3d9c56db3a7312a65bb0",
+                "summary": "Listar y buscar productos",
+                "operationId": "b7a40d537e829bca5949c476679fb778",
                 "parameters": [
                     {
-                        "name": "value",
-                        "in": "path",
-                        "required": true,
+                        "name": "filtro",
+                        "in": "query",
                         "schema": {
                             "type": "string"
                         }

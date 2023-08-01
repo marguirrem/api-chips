@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PaymentController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,8 +31,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
    
     Route::get('clients/search/{value}',[ClientController::class,'search']);   
 
-    Route::get('products/search/{value}',[ProductController::class,'search']);   
-    Route::get('products',[ProductController::class,'index']);    
+    Route::get('products',[ProductController::class,'search']);   
+       
 
     Route::get('mypayments',[PaymentController::class,'index']);   
     Route::post('payments',[PaymentController::class,'store']);   

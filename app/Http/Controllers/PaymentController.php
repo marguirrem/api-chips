@@ -62,6 +62,16 @@ class PaymentController extends Controller
      *                         type="string",
      *                         example="6"
      *                     ),
+     *   @OA\Property(
+     *                         property="foto",
+     *                         type="string",
+     *                         example="http://domain/api/payments/photo/ddkdjdjadldfjldfadfdfsad.png"
+     *                     ),
+     *   @OA\Property(
+     *                         property="observaciones",
+     *                         type="string",
+     *                         example="Cliente abona a factura no. xxxx"
+     *                     ),
      *             )
      *         )
      *     )
