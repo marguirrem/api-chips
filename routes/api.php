@@ -8,7 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CarrierController;
-
+use App\Http\Controllers\SalesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +45,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::get('visits/photo/{path}', [VisitController::class, 'getImage'])->where('path', '.*');
 
 Route::get('payments/photo/{path}', [PaymentController::class, 'getImage'])->where('path', '.*');
+
+Route::get('sales/photo/{id}', [SalesController::class, 'getImage'])->where('id', '.*');
 
 Route::post('login', [AuthController::class,'login']);
 
