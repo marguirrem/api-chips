@@ -16,4 +16,10 @@ class SalesItems extends Model
      
   
     ];
+
+    public $timestamps = false;
+
+    public function sales(){
+        return $this->belongsTo(Sales::class);
+    }
 }

@@ -40,8 +40,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('payments',[PaymentController::class,'store']);   
     Route::get('typepayments',[PaymentController::class,'tipos_abonos']);  
     
+    Route::post('orders',[SalesController::class,'store']);  
+
+    Route::get('myorders',[SalesController::class,'index']); 
+
     
 });
+ 
+
 Route::get('visits/photo/{path}', [VisitController::class, 'getImage'])->where('path', '.*');
 
 Route::get('payments/photo/{path}', [PaymentController::class, 'getImage'])->where('path', '.*');

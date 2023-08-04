@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function visitas(){
         return $this->hasMany(Visit::class);
     }
+
+    public function sales(){
+        return $this->hasMany(Sales::class);
+    }
 }

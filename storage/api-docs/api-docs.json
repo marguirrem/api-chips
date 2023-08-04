@@ -455,6 +455,140 @@
                 ]
             }
         },
+        "/api/myorders": {
+            "get": {
+                "tags": [
+                    "Pedidos"
+                ],
+                "summary": "Listar mis pedidos",
+                "operationId": "f9e87356f71a492238bcb67eb47e5861",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/orders": {
+            "post": {
+                "tags": [
+                    "Pedidos"
+                ],
+                "summary": "Crear Pedido",
+                "operationId": "27c123f7ea40b01594fae6803c308978",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "client_id": {
+                                        "description": "client_id",
+                                        "type": "string"
+                                    },
+                                    "notes": {
+                                        "description": "notes",
+                                        "type": "string"
+                                    },
+                                    "total": {
+                                        "description": "total",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "status",
+                                        "type": "string"
+                                    },
+                                    "tendered": {
+                                        "description": "tendered",
+                                        "type": "string"
+                                    },
+                                    "is_guest": {
+                                        "description": "is_guest",
+                                        "type": "string"
+                                    },
+                                    "delete_flag": {
+                                        "description": "delete_flag",
+                                        "type": "string"
+                                    },
+                                    "geolocalizacion": {
+                                        "description": "geolocalizacion",
+                                        "type": "string"
+                                    },
+                                    "forma_pago": {
+                                        "description": "forma_pago",
+                                        "type": "string"
+                                    },
+                                    "transporte": {
+                                        "description": "transporte",
+                                        "type": "string"
+                                    },
+                                    "bodega": {
+                                        "description": "bodega",
+                                        "type": "string"
+                                    },
+                                    "foto": {
+                                        "description": "foto del pedido",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "item": {
+                                        "description": "item",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "product_id": {
+                                                    "description": "product_id",
+                                                    "type": "string"
+                                                },
+                                                "price": {
+                                                    "description": "price",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "22"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/visits": {
             "post": {
                 "tags": [
