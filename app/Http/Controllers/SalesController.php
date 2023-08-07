@@ -30,6 +30,24 @@ class SalesController extends Controller
       return $sales;
     }
 
+    /**
+     * Ver foto de un pedido por id de registro
+     * @OA\Get (
+     *     path="/api/sales/photo/{id}",
+     *     tags={"Pedidos"},
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *        
+     *     ),
+     * )
+     **/
     public function getImage($saleId){
        
         $rendered_buffer= Sales::all()->find($saleId)->attachment;
@@ -117,23 +135,7 @@ class SalesController extends Controller
     * type="string",
     * format="binary",
     * ),
-    * @OA\Property(
-    * description="item",
-    * property="item",
-    * type="array",
-    *@OA\Items(
-* @OA\Property(
-    * description="product_id",
-    * property="product_id",
-    * type="string",
-    *),
-    * @OA\Property(
-    * description="price",
-    * property="price",
-    * type="string",
-    *)
-    *)
-    * ),
+
     * )
     * )
     * ),
@@ -187,11 +189,10 @@ class SalesController extends Controller
         foreach ($request['item'] as $valor) {
             $item = new SalesItems();
             $item->sales_id = $sale->id;
-            $item->product_id = $valor['product_id'];
+            $item->product_id = str_pad($valor['product_id'], 6, "0", STR_PAD_LEFT);  
             $item->price = $valor['price'];
             $item->quantity = $valor['quantity'];
             $item->save();
-      
         }
     }catch (\Exception $e ){
         return response()->json( $e,500);
@@ -209,6 +210,5 @@ class SalesController extends Controller
         $user->avatar = $contents;
         */
     }
-
 
 }

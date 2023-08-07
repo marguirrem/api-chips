@@ -480,6 +480,30 @@
                 ]
             }
         },
+        "/api/sales/photo/{id}": {
+            "get": {
+                "tags": [
+                    "Pedidos"
+                ],
+                "summary": "Ver foto de un pedido por id de registro",
+                "operationId": "42ea324f486468666cf6f8f992284290",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/api/orders": {
             "post": {
                 "tags": [
@@ -540,23 +564,6 @@
                                         "description": "foto del pedido",
                                         "type": "string",
                                         "format": "binary"
-                                    },
-                                    "item": {
-                                        "description": "item",
-                                        "type": "array",
-                                        "items": {
-                                            "properties": {
-                                                "product_id": {
-                                                    "description": "product_id",
-                                                    "type": "string"
-                                                },
-                                                "price": {
-                                                    "description": "price",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "type": "object"
-                                        }
                                     }
                                 },
                                 "type": "object"
