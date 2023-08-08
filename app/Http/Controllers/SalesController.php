@@ -89,27 +89,7 @@ class SalesController extends Controller
     * property="total",
     * type="string"
     * ),
-            * @OA\Property(
-    * description="status",
-    * property="status",
-    * type="string"
-    * ),
-            * @OA\Property(
-    * description="tendered",
-    * property="tendered",
-    * type="string"
-    * ),
-            * @OA\Property(
-    * description="is_guest",
-    * property="is_guest",
-    * type="string"
-    * ),
-            * @OA\Property(
-    * description="delete_flag",
-    * property="delete_flag",
-    * type="string"
-    * ),
-            * @OA\Property(
+    * @OA\Property(
     * description="geolocalizacion",
     * property="geolocalizacion",
     * type="string"
@@ -124,18 +104,17 @@ class SalesController extends Controller
     * property="transporte",
     * type="string"
     * ),
-        * @OA\Property(
-    * description="bodega",
-    * property="bodega",
-    * type="string"
-    * ),
     * @OA\Property(
     * description="foto del pedido",
     * property="foto",
     * type="string",
     * format="binary",
     * ),
-
+    * @OA\Property(
+    * description="items",
+    * property="items",
+    * type="string"
+    * ),
     * )
     * )
     * ),
@@ -162,15 +141,16 @@ class SalesController extends Controller
         $sale->client_id= $request['client_id'];
         $sale->notes = $request['notes'];
         $sale->total = $request['total'];
-        $sale->status = $request['status'];
-        $sale->tendered = $request['tendered'];
-        $sale->is_guest = $request['is_guest'];
+        $sale->status = "0";
+        $sale->tendered = "0";
+        $sale->is_guest = "0";
         $sale->user_id =$request->user()->id;
-        $sale->delete_flag = $request['delete_flag'];
+        $sale->delete_flag = "0";
         $sale->geolocalizacion = $request['geolocalizacion'];
         $sale->forma_pago = $request['forma_pago'];
         $sale->transporte = $request['transporte'];
-        $sale->bodega=$request['bodega'];
+        $sale->bodega = "0";
+
         if($request->hasFile('foto')){
 
             /*$file = $request->file('foto');
@@ -183,16 +163,19 @@ class SalesController extends Controller
             $base64 = base64_encode($logo);
             $sale->attachment = $base64;
         }
+
         $sale->save();
 
-
-        foreach ($request['item'] as $valor) {
-            $item = new SalesItems();
-            $item->sales_id = $sale->id;
-            $item->product_id = str_pad($valor['product_id'], 6, "0", STR_PAD_LEFT);  
-            $item->price = $valor['price'];
-            $item->quantity = $valor['quantity'];
-            $item->save();
+        $items = json_decode($request['items']);
+        if($items!=null){
+            foreach($items as $valor){
+                $item = new SalesItems();
+                $item->sales_id = $sale->id;
+                $item->product_id = str_pad($valor->product_id, 6, "0", STR_PAD_LEFT);  
+                $item->price = $valor->price;
+                $item->quantity = $valor->quantity;
+                $item->save();
+            }
         }
     }catch (\Exception $e ){
         return response()->json( $e,500);

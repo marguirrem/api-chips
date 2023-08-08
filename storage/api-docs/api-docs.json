@@ -528,22 +528,6 @@
                                         "description": "total",
                                         "type": "string"
                                     },
-                                    "status": {
-                                        "description": "status",
-                                        "type": "string"
-                                    },
-                                    "tendered": {
-                                        "description": "tendered",
-                                        "type": "string"
-                                    },
-                                    "is_guest": {
-                                        "description": "is_guest",
-                                        "type": "string"
-                                    },
-                                    "delete_flag": {
-                                        "description": "delete_flag",
-                                        "type": "string"
-                                    },
                                     "geolocalizacion": {
                                         "description": "geolocalizacion",
                                         "type": "string"
@@ -556,14 +540,14 @@
                                         "description": "transporte",
                                         "type": "string"
                                     },
-                                    "bodega": {
-                                        "description": "bodega",
-                                        "type": "string"
-                                    },
                                     "foto": {
                                         "description": "foto del pedido",
                                         "type": "string",
                                         "format": "binary"
+                                    },
+                                    "items": {
+                                        "description": "items",
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
