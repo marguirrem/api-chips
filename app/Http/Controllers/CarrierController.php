@@ -13,7 +13,12 @@ class CarrierController extends Controller
     *     path="/api/carriers",
     *     tags={"Transportistas"},
     *  security={ {"sanctum": {} }},
-    
+    * @OA\Parameter(
+    *         in="query",
+    *         name="filtro",
+    *        
+    *         @OA\Schema(type="string")
+    *     ),
     * @OA\Response(response=200,description="successful operation",
     *          @OA\MediaType(mediaType="application/json")
     *      ),
@@ -30,10 +35,25 @@ class CarrierController extends Controller
     * ),
     *)
     */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Carrier::on('sqlsrvchips')->paginate(10);
+        $filtro =$request->Input('filtro');
 
-        return $data;
+        if( $filtro == ''){
+            $data = Carrier::on('sqlsrvchips')->paginate(10);
+            if($data->total() > 0){
+                return $data;
+            }
+            return response()->json(["error" => 'Not found'],404);
+        }else{
+
+            $data = Carrier::on('sqlsrvchips')
+            ->where('Nombre','LIKE','%'. $filtro.'%')
+            ->orWhere('Direccion', 'like', '%' . $filtro . '%')->paginate(10);
+            if($data->total() > 0){
+                return $data;
+            }
+            return response()->json(["error" => 'Not found'],404);
+        }
     } 
 }

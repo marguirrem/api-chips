@@ -130,6 +130,15 @@
                 ],
                 "summary": "Listar transportistas",
                 "operationId": "d5410200caf20e4bc509248bbd20e984",
+                "parameters": [
+                    {
+                        "name": "filtro",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",

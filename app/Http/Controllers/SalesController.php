@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Models\Sales;
 use App\Models\SalesItems;
+use Validator;
 
 class SalesController extends Controller
 {
@@ -62,7 +63,6 @@ class SalesController extends Controller
         }
     }
 
-
      /**
      * Crear Pedido
      * @OA\Post (
@@ -94,7 +94,7 @@ class SalesController extends Controller
     * property="geolocalizacion",
     * type="string"
     * ),
-            * @OA\Property(
+    * @OA\Property(
     * description="forma_pago",
     * property="forma_pago",
     * type="string"
@@ -133,6 +133,22 @@ class SalesController extends Controller
      * )
      */
     public function store(Request $request){
+
+        $validator = Validator::make($request->all(),[
+            'client_id' =>'required',
+            'notes' => 'required',
+            'total' => 'required',
+            'geolocalizacion' => 'required',
+            'forma_pago' => 'required',
+            'transporte' => 'required',
+            'items' => 'required',
+            'foto' =>'sometimes|image'
+        ]);
+
+        if($validator->fails()){
+            return response()->json([$validator->errors()],400);
+        }
+
         try{
         $Date = date("Y-m-d");  
 

@@ -39,8 +39,6 @@ class ProductController extends Controller
     public function search(Request $request){
         $filtro =$request->Input('filtro');
 
-       
-
         if( $filtro == ''){
             $data = Product::on('sqlsrvchips')->paginate(10);
             if($data->total() > 0){
@@ -55,7 +53,7 @@ class ProductController extends Controller
             if($data->total() > 0){
                 return $data;
             }
-            return response()->json(["error" => 'Not found 2'],404);
+            return response()->json(["error" => 'Not found'],404);
         }
     }
 }
