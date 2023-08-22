@@ -27,7 +27,7 @@ class SalesController extends Controller
      *)
      */ 
     public function index(Request $request){
-      $sales =  $request->user()->sales()->with('items')->Paginate(10);
+      $sales =  $request->user()->sales()->orderBy('created_at', 'desc')->with('items')->Paginate(10);
       return $sales;
     }
 
