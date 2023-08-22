@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Sales;
 use App\Models\SalesItems;
 use Validator;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
@@ -149,11 +151,18 @@ class SalesController extends Controller
             return response()->json([$validator->errors()],400);
         }
 
-        try{
+        try {
         $Date = date("Y-m-d");  
 
+        $count = Sales::whereDate('created_at', DB::raw('CURDATE()'))->count();;
+     
+        $count+=1;
+
+        $correlativo = $Date.str_pad($count, 3, "0", STR_PAD_LEFT); 
+    
+
         $sale = new Sales();
-        $sale->invoice_code = str_replace("-","",$Date);
+        $sale->invoice_code = str_replace("-","",$correlativo);
         $sale->client_id= $request['client_id'];
         $sale->notes = $request['notes'];
         $sale->total = $request['total'];
@@ -169,11 +178,6 @@ class SalesController extends Controller
 
         if($request->hasFile('foto')){
 
-            /*$file = $request->file('foto');
-            // Get the contents of the file
-            $contents = $file->openFile()->fread($file->getSize());
-            $sale->attachment = $contents;
-            */
             $path = $request->file('foto')->getRealPath();
             $logo = file_get_contents($path);
             $base64 = base64_encode($logo);
@@ -197,17 +201,6 @@ class SalesController extends Controller
         return response()->json( $e,500);
     }
         return response()->json(['id' => $sale->id],201);
-
-        /*
-        $file = $request->file('image');
-
-        // Get the contents of the file
-        $contents = $file->openFile()->fread($file->getSize());
-    
-        // Store the contents to the database
-        $user = App\User::find($id);
-        $user->avatar = $contents;
-        */
     }
 
 }
