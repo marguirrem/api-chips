@@ -212,16 +212,16 @@ class SalesController extends Controller
         $client =Client::on('sqlsrvchips')->selectRaw("TRIM(Cliente) AS Cliente, TRIM(IDTributario) AS IDTributario, TRIM(RazonSocial) AS RazonSocial, FORMAT(CreditoLimite, 'C', 'es-gt') AS CreditoLimite, CAST(Saldo AS INT) AS Saldo")->where('Cliente','=',$sale->client_id)->get();
 
         foreach($sale->items as $itm){
-              $product = Product::on('sqlsrvchips')->where('Producto','=', $itm->product_id)->get();
-              //dd($product[0]);
-              $itm->nombre = $product[0]->Descripcion;
-            }
-       // $sale->items->nombre="sdfds";
+            $product = Product::on('sqlsrvchips')->where('Producto','=', $itm->product_id)->get();
+              
+            $itm->nombre = $product[0]->Descripcion;
+        }
+        
+       $dompdf = App::make("dompdf.wrapper");
+       $dompdf->loadView('pdf', ['sale' => $sale,'cliente'=>$client]);
+       return $dompdf->download("mi_archivo.pdf");
 
-
-       ;
-        //dd($sale);
-        return view('pdf', ['sale' => $sale,'cliente'=>$client]);
+        //return view('pdf', ['sale' => $sale,'cliente'=>$client]);
     }
 
 }
