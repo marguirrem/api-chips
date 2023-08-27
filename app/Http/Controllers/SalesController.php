@@ -214,7 +214,7 @@ class SalesController extends Controller
         foreach($sale->items as $itm){
               $product = Product::on('sqlsrvchips')->where('Producto','=', $itm->product_id)->get();
               dd($product);
-              $itm->nombre = $product->Descripcion;
+              $itm->nombre = $product[0]->Descripcion;
             }
        // $sale->items->nombre="sdfds";
 
