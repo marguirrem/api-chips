@@ -50,10 +50,30 @@
             </div>
         </div>
         <br>
-
+        <table class="table table-bordered">
+            <thead>
+                <th>Cantidad</th>
+                <th>Item</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Total</th>
+            </thead>
+            <tbody>
+                @foreach ($sale->items as $item)
+                <tr>
+                    <td>{{$item->quantity}}</td>
+                    <td>{{$item->product_id}} </td>
+                    <td>{{$item->nombre}}</td>
+                    <td>{{$item->price}}</td>
+                    <td> {{$item->price * $item->quantity}}</td>
+                </tr>
+                @endforeach
+  
+            </tbody>
+        </table>
     <br>
     <br>
-    <div >
+    <div class="">
         <div class="row border">
             <div class="col-md-9 border">
                 <th><b>Observaciones</b></th>
