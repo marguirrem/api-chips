@@ -35,7 +35,7 @@
             </div>
             <div class="col-md-6">
             <b>Clinte:</b> <br>
-            <b>{{$sale->client_id}} / {{$cliente->RazonSocial}} </b>
+            <b>{{$sale->client_id}} / {{$cliente[0]->RazonSocial}} </b>
             </div>
         </div>
         <br>
