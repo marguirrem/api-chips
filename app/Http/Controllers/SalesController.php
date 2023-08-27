@@ -218,8 +218,9 @@ class SalesController extends Controller
               
             $itm->nombre = $product[0]->Descripcion;
         }
-        
-        $pdf = PDF::loadView('pdf', ['sale' => $sale,'cliente'=>$client]);
+        $dompdf = App::make("dompdf.wrapper");
+
+        $pdf = $dompdf::loadView('pdf', ['sale' => $sale,'cliente'=>$client]);
         // download PDF file with download method
         return $pdf->download('pdf_file.pdf');
 
