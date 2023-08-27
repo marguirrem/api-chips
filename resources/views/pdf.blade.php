@@ -56,26 +56,26 @@
     <div >
         <div class="row border">
             <div class="col-md-9 border">
-                <th><b>Observaciones</b></th>
+                <b>Observaciones</b>
             </div>
 
             <div class="col-md-3">
-                <th><b>Attachment</b></th>
+                <b>Attachment</b> 
             </div>
         </div>
         <div class="row">
             <div class="col-md-9 border">
-                <td>{{$sale->notes}}</td>
+                {{$sale->notes}}
             </div>
 
             <div class="col-md-3 border">
-                <td>
+               
                     @if (str_contains($sale->attachment, 'data:image'))
                     <?php printf('<img src="%s" class="img" />', $sale->attachment);?>
                     @else
                         <?php printf('<img src="data:image/png;base64,%s" class="img" />', $sale->attachment)?>
                     @endif
-                </td>
+                
             </div>
         </div>
 
