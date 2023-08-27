@@ -54,5 +54,7 @@ Route::get('payments/photo/{path}', [PaymentController::class, 'getImage'])->whe
 
 Route::get('sales/photo/{id}', [SalesController::class, 'getImage'])->where('id', '.*');
 
-Route::post('login', [AuthController::class,'login']);
 
+Route::get('pdf/{id}', [SalesController::class, 'pdf']);
+
+Route::post('login', [AuthController::class,'login']);

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Models\Sales;
 use App\Models\SalesItems;
+use App\Models\Client;
+use App\Models\Product;
 use Validator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -201,6 +203,24 @@ class SalesController extends Controller
         return response()->json( $e,500);
     }
         return response()->json(['id' => $sale->id],201);
+    }
+
+
+    public function pdf($id){
+
+        $sale = Sales::with('items')->findOrFail($id);
+        $client =Client::on('sqlsrvchips')->selectRaw("TRIM(Cliente) AS Cliente, TRIM(IDTributario) AS IDTributario, TRIM(RazonSocial) AS RazonSocial, FORMAT(CreditoLimite, 'C', 'es-gt') AS CreditoLimite, CAST(Saldo AS INT) AS Saldo")->where('Cliente','=',$sale->client_id)->get();
+
+        foreach($sale->items as $itm){
+              $product = Product::on('sqlsrvchips')->where('Producto','=', $itm->product_id)->get();
+              $itm->nombre = $product->Descripcion;
+            }
+       // $sale->items->nombre="sdfds";
+
+
+       ;
+        //dd($sale);
+        return view('pdf', ['sale' => $sale,'cliente'=>$client]);
     }
 
 }
