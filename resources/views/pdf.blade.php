@@ -52,6 +52,44 @@
         <br>
 
     <br>
+        <div class="row border">
+            <div class="col-md-2">
+                <b>Cantidad</b>
+            </div>
+            <div class="col-md-2">
+                <b>Item</b>
+            </div>
+            <div class="col-md-4">
+                <b>Producto</b>
+            </div>
+            <div class="col-md-2">
+                <b>Precio</b>
+            </div>
+            <div class="col-md-2">
+                <b>Total</b>
+            </div>
+        </div>
+        @foreach ($sale->items as $item)
+        <div class="row border">
+
+            <div class="col-md-2">
+                {{$item->quantity}}
+            </div>
+            <div class="col-md-2">
+                {{$item->product_id}}
+            </div>
+            <div class="col-md-4">
+                {{$item->nombre}}
+            </div>
+            <div class="col-md-2">
+                {{$item->price}}
+            </div>
+            <div class="col-md-2">
+                {{$item->price * $item->quantity}}
+            </div>
+        </div>
+        @endforeach
+
     <br>
     <div >
         <div class="row border">
