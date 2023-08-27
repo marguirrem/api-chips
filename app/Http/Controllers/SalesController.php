@@ -221,10 +221,8 @@ class SalesController extends Controller
        
         $pdf = Pdf::loadView('pdf', ['sale' => $sale,'cliente'=>$client]);
         // download PDF file with download method
-        return $pdf->download('pdf_file.pdf');
-
-        return $dompdf->download("pedido_".$id."_.pdf");
-
+        //return $pdf->download('pdf_file.pdf');
+        return $pdf->stream();
         //return view('pdf', ['sale' => $sale,'cliente'=>$client]);
     }
 
