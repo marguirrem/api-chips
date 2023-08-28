@@ -6,6 +6,8 @@
     <title>Pedido</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
      <style>
+        @page { margin: 0px; }
+body { margin: 0px; }
         .img{
             width:200px;
             height: 200px;
