@@ -126,6 +126,5 @@ body { margin: 0px; }
         Realizado por {{$sale->user->firstname }} {{$sale->user->lastname }}
     </div>
     
-
    </body>
 </html>

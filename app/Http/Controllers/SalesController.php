@@ -222,7 +222,7 @@ class SalesController extends Controller
         $pdf = Pdf::loadView('pdf', ['sale' => $sale,'cliente'=>$client])->setPaper('A4', 'landscape');
         // download PDF file with download method
         //return $pdf->download('pdf_file.pdf');
-        return $pdf->download('hola.pdf');
+        return $pdf->stream();
         //return view('pdf', ['sale' => $sale,'cliente'=>$client]);
     }
 
