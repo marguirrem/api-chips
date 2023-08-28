@@ -15,7 +15,7 @@ body { margin: 0px; }
     </style>
 </head>
 <body>
-    <div class="container">
+   
         <div class="row " style="text-align: center;">
 
             <div class="col-md-2">
@@ -126,6 +126,6 @@ body { margin: 0px; }
         Realizado por {{$sale->user->firstname }} {{$sale->user->lastname }}
     </div>
     
-    </div>  
+
    </body>
 </html>
