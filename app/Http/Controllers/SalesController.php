@@ -209,7 +209,7 @@ class SalesController extends Controller
 
 
     public function pdf($id){
-
+        set_time_limit(0);
         $sale = Sales::with('items')->findOrFail($id);
         $client =Client::on('sqlsrvchips')->selectRaw("TRIM(Cliente) AS Cliente, TRIM(IDTributario) AS IDTributario, TRIM(RazonSocial) AS RazonSocial, FORMAT(CreditoLimite, 'C', 'es-gt') AS CreditoLimite, CAST(Saldo AS INT) AS Saldo")->where('Cliente','=',$sale->client_id)->get();
 
@@ -219,10 +219,11 @@ class SalesController extends Controller
             $itm->nombre = $product[0]->Descripcion;
         }
        
-        $pdf = Pdf::loadView('pdf', ['sale' => $sale,'cliente'=>$client])->setPaper('A4', 'landscape');
+        $pdf = Pdf::loadView('pdf', ['sale' => $sale,'cliente'=>$client]);
+        //$pdf->render();
         // download PDF file with download method
-        //return $pdf->download('pdf_file.pdf');
-        return $pdf->stream();
+
+        return $pdf->download('pdf_file.pdf');
         //return view('pdf', ['sale' => $sale,'cliente'=>$client]);
     }
 
