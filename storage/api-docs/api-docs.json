@@ -589,6 +589,30 @@
                 ]
             }
         },
+        "/api/pdf/{id}": {
+            "get": {
+                "tags": [
+                    "Pedidos"
+                ],
+                "summary": "Descargar pdf con detalle del pedido con  id de registro",
+                "operationId": "d098c83ca19fa46d470f04a5b4e5b944",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/api/visits": {
             "post": {
                 "tags": [

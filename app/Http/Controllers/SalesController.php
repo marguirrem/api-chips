@@ -208,6 +208,25 @@ class SalesController extends Controller
     }
 
 
+    
+    /**
+     * Descargar pdf con detalle del pedido con  id de registro
+     * @OA\Get (
+     *     path="/api/pdf/{id}",
+     *     tags={"Pedidos"},
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *        
+     *     ),
+     * )
+     **/
     public function pdf($id){
         set_time_limit(0);
         $sale = Sales::with('items')->findOrFail($id);
