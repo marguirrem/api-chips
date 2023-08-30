@@ -242,8 +242,8 @@ class SalesController extends Controller
         //$pdf->render();
         // download PDF file with download method
 
-        return $pdf->download('pedido_'.$id);
-        //return view('pdf', ['sale' => $sale,'cliente'=>$client]);
+        //return $pdf->download('pedido_'.$id);
+        return view('pdf', ['sale' => $sale,'cliente'=>$client]);
     }
 
 }

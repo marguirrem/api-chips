@@ -6,14 +6,15 @@
     <title>Pedido</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
-        @page { margin: 10px;
-        
+        @page { 
+            margin: 10px;
             size: 35cm 22cm landscape;
-
         }
+
         body {
              margin: 0px;
         }
+
         .img{
             width:200px;
             height: 200px;
@@ -109,7 +110,25 @@
                 {{$item->price * $item->quantity}}
             </div>
         </div>
+        
         @endforeach
+        <div class=" " style="text-align: center">
+            <div class="" style=" width:100px;display:inline-block;">
+                
+            </div>
+            <div class="" style=" width:100px;display:inline-block;">
+              
+            </div>
+            <div class="" style=" width:400px;display:inline-block;">
+               
+            </div>
+            <div class="" style=" width:100px;display:inline-block;">
+               <b>Total</b>
+            </div>
+            <div class="bordes" style=" width:400px;display:inline-block;">
+                <b>{{$sale->total}}</b>
+            </div>
+        </div>
         <br>
         <br>
         
