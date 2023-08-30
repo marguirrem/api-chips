@@ -154,7 +154,7 @@
                         <img src="{{$sale->attachment}}" alt="attachment" class="img">
                        
                         @else
-                            <img src="data:image/png;base64,{{$sale->attachment}}" alt="">
+                            <img src="data:image/png;base64,{{$sale->attachment}}" alt="attachment" class="img">
                   
                         @endif
                     
