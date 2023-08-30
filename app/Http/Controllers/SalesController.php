@@ -222,7 +222,7 @@ class SalesController extends Controller
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="OK"
+     *         description="OK" dfsafdsa fasd 
      *        
      *     ),
      * )
@@ -242,7 +242,7 @@ class SalesController extends Controller
         //$pdf->render();
         // download PDF file with download method
 
-        return $pdf->download('pdf_file.pdf');
+        return $pdf->download('pedido_'.$id);
         //return view('pdf', ['sale' => $sale,'cliente'=>$client]);
     }
 
