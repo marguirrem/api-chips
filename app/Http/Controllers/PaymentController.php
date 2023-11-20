@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\TypePayment;
+use App\Models\Bank;
 use Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -197,6 +198,79 @@ class PaymentController extends Controller
      */
     public function tipos_abonos(){
         $type_payments = TypePayment::paginate(10);
+
+        return response()->json($type_payments);
+    }
+
+
+     /**
+     * Lista los bancos para cobros
+     * @OA\Get (
+     *     path="/api/payments/banks",
+     *     tags={"Cobros"},
+     *  security={ {"sanctum": {} }},
+     *     @OA\Response(
+     *         response=200,
+     *         description="ok",
+     *         @OA\JsonContent(
+     *         type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="string",
+     *                         example="1"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="descripcion",
+     *                         type="string",
+     *                         example="Banco BAC"
+     *                     ),
+     *                  
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function bancos(){
+        $banks = Bank::paginate(10);
+
+        return response()->json($banks);
+    }
+
+
+
+    /**
+     * Lista los tipos de abono v2 para pantalla de cobros
+     * @OA\Get (
+     *     path="/api/typepayments/payments",
+     *     tags={"Cobros"},
+     *  security={ {"sanctum": {} }},
+     *     @OA\Response(
+     *         response=200,
+     *         description="ok",
+     *         @OA\JsonContent(
+     *         type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="tipo_id",
+     *                         type="string",
+     *                         example="1"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="descripcion",
+     *                         type="string",
+     *                         example="Efectivo"
+     *                     ),
+     *                  
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function tipos_abonos_cobros(){
+        $type_payments = TypePayment::whereNotIn(strtoupper('descripcion'), ['CREDITO','CONTADO'] )->paginate(10);
 
         return response()->json($type_payments);
     }

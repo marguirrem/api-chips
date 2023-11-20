@@ -38,7 +38,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('mypayments',[PaymentController::class,'index']);   
     Route::post('payments',[PaymentController::class,'store']);   
-    Route::get('typepayments',[PaymentController::class,'tipos_abonos']);  
+    Route::get('typepayments',[PaymentController::class,'tipos_abonos']);
+    Route::get('typepayments/payments',[PaymentController::class,'tipos_abonos_cobros']);  
     
     Route::post('orders',[SalesController::class,'store']);  
 
