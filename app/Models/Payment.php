@@ -27,6 +27,11 @@ class Payment extends Model
         'vendedor_id',
         'foto',
         'observaciones',
+        'documento',
+        'fechadocumento',
+        'recibo',
+        'banco'
     ];
+
     public $timestamps = false;
 }

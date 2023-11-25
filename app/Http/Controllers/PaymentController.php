@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\URL;
 
 /**
 *
-* @OA\Server(url="http://localhost:8000")
+* @OA\Server(url="http://chips.myposgt.net/api2/public")
 *
 */
 
@@ -118,10 +118,25 @@ class PaymentController extends Controller
     * type="string",
     * format="binary",
     * ),
+       * @OA\Property(
+    * description="Banco",
+    * property="banco",
+    * type="string",
+    * ),
+       * @OA\Property(
+    * description="Número de documento",
+    * property="documento",
+    * type="string",
+    * ),
             * @OA\Property(
     * description="tipo_abono",
     * property="tipo_abono",
     * type="string"
+    * ),
+       * @OA\Property(
+    * description="Fecha del documento",
+    * property="fechadocumento",
+    * type="string",
     * ),
     * )
     * )

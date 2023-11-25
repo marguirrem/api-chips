@@ -40,6 +40,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('payments',[PaymentController::class,'store']);   
     Route::get('typepayments',[PaymentController::class,'tipos_abonos']);
     Route::get('typepayments/payments',[PaymentController::class,'tipos_abonos_cobros']);  
+    Route::get('payments/banks',[PaymentController::class,'bancos']);
     
     Route::post('orders',[SalesController::class,'store']);  
 

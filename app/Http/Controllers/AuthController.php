@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 /**
 *
-* @OA\Server(url="http://ec2-107-20-22-188.compute-1.amazonaws.com")
+* @OA\Server(url="http://chips.myposgt.net/app/public")
 *
 */
 

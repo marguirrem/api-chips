@@ -200,7 +200,7 @@ class SalesController extends Controller
                 $item->price = $valor->price;
                 $item->quantity = $valor->quantity;
                 
-                $item->descuento = $valor->descuento;
+//                $item->descuento = $valor->discount;
                
                 $item->save();
             }
