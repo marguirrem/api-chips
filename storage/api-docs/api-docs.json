@@ -7,13 +7,13 @@
     },
     "servers": [
         {
-            "url": "http://ec2-107-20-22-188.compute-1.amazonaws.com"
+            "url": "http://chips.myposgt.net/app/public"
+        },
+        {
+            "url": "http://chips.myposgt.net/api2/public"
         },
         {
             "url": "http://localhost:8000"
-        },
-        {
-            "url": "http://ec2-107-20-22-188.compute-1.amazonaws.com"
         }
     ],
     "paths": {
@@ -310,8 +310,20 @@
                                         "type": "string",
                                         "format": "binary"
                                     },
+                                    "banco": {
+                                        "description": "Banco",
+                                        "type": "string"
+                                    },
+                                    "documento": {
+                                        "description": "Número de documento",
+                                        "type": "string"
+                                    },
                                     "tipo_abono": {
                                         "description": "tipo_abono",
+                                        "type": "string"
+                                    },
+                                    "fechadocumento": {
+                                        "description": "Fecha del documento",
                                         "type": "string"
                                     }
                                 },
@@ -352,6 +364,84 @@
                 ],
                 "summary": "Lista los tipos de abono",
                 "operationId": "9a800687043bf71cae456dbb8f9c62c7",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "tipo_id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "descripcion": {
+                                                "type": "string",
+                                                "example": "Efectivo"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/payments/banks": {
+            "get": {
+                "tags": [
+                    "Cobros"
+                ],
+                "summary": "Lista los bancos para cobros",
+                "operationId": "b8c2c100d4649a616bacc448f9f565f4",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "descripcion": {
+                                                "type": "string",
+                                                "example": "Banco BAC"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/typepayments/payments": {
+            "get": {
+                "tags": [
+                    "Cobros"
+                ],
+                "summary": "Lista los tipos de abono v2 para pantalla de cobros",
+                "operationId": "497aabfad3f0a896951811e08d730fb8",
                 "responses": {
                     "200": {
                         "description": "ok",

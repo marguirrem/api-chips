@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\URL;
 *             description="Api Pedidos Chips"
 * )
 *
-* @OA\Server(url="http://ec2-107-20-22-188.compute-1.amazonaws.com")
+* @OA\Server(url="http://localhost:8000")
 *
 */
 
