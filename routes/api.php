@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CarrierController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\ReporteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +58,7 @@ Route::get('sales/photo/{id}', [SalesController::class, 'getImage'])->where('id'
 
 
 Route::get('pdf/{id}', [SalesController::class, 'pdf']);
+
+Route::get('reporte/productividad',[ReporteController::class,'pedidos']);
 
 Route::post('login', [AuthController::class,'login']);
