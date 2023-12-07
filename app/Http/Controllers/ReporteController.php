@@ -24,7 +24,7 @@ class ReporteController extends Controller
         $sales = Sales::with('items')->where('user_id','=',$userId)->whereDate('created_At','=',$fecha)->get();
 
         //dd($sales);
-        foreach($sales as $sale){
+        /*        foreach($sales as $sale){
 
             $client =Client::on('sqlsrvchips')->selectRaw("TRIM(Cliente) AS Cliente, TRIM(IDTributario) AS IDTributario, TRIM(RazonSocial) AS RazonSocial, FORMAT(CreditoLimite, 'C', 'es-gt') AS CreditoLimite, CAST(Saldo AS INT) AS Saldo")->where('Cliente','=',$sale->client_id)->get();
 
@@ -34,8 +34,10 @@ class ReporteController extends Controller
                 $itm->nombre = $product[0]->Descripcion;
             }
         }
+        */
+        //return $sales;
 
-        return $sales;
+        return view('pedidos', ['sales' =>$sales ]);
 
     }
 }
