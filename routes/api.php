@@ -46,7 +46,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('orders',[SalesController::class,'store']);  
 
     Route::get('myorders',[SalesController::class,'index']); 
-
+    Route::get('reporte/productividad',[ReporteController::class,'pedidos']);
     
 });
  
@@ -60,6 +60,6 @@ Route::get('sales/photo/{id}', [SalesController::class, 'getImage'])->where('id'
 
 Route::get('pdf/{id}', [SalesController::class, 'pdf']);
 
-Route::get('reporte/productividad',[ReporteController::class,'pedidos']);
+
 
 Route::post('login', [AuthController::class,'login']);

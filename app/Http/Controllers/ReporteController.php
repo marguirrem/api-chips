@@ -9,19 +9,39 @@ use App\Models\Client;
 use App\Models\Product;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\ReportExport;
 
 class ReporteController extends Controller
 {
     
+    //
+    /**
+     * Listar pedidos
+     * @OA\Get (
+     *     path="/api/reporte/productividad",
+     *     tags={"Reporte"},
+     *  security={ {"sanctum": {} }},
+     * @OA\Response(response=200,description="successful operation",
+     *          @OA\MediaType(mediaType="application/json")
+     *      ),
+     * @OA\Response(response=404, description="Resource Not Found",
+     * 
+     * ),
+     *)
+     */ 
     public function pedidos(Request $request){  
 
         set_time_limit(0);
         $userId = $request->query('userId');
         $fecha = $request->query('fecha');
 
+        if($request->query('fecha')){
+            return (new ReportExport($request->user()->id,$request->user()->username,$fecha))->download('reporte_'.$fecha.'.xlsx');
+           //return (new ReportExport(5,"mar",$fecha))->download('reporte_'.$fecha.'.xlsx');
+        }
         //dd($fecha);
-        $sales = Sales::with('items')->where('user_id','=',$userId)->whereDate('created_At','=',$fecha)->get();
+       // $sales = Sales::with('items')->where('user_id','=',$request->user()->id)->whereDate('created_At','=',Carbon::today())->get();
 
         //dd($sales);
         /*        foreach($sales as $sale){
@@ -37,7 +57,17 @@ class ReporteController extends Controller
         */
         //return $sales;
 
-        return view('pedidos', ['sales' =>$sales ]);
+        //return view('pedidos', ['sales' =>$sales ]);
+
+//        $pdf = Pdf::loadView('pedidos', ['sales' => $sales]);
+        //$pdf->render();
+        // download PDF file with download method
+
+       
+        return (new ReportExport($request->user()->id,$request->user()->username,Carbon::today()))->download('reporte_'.Carbon::today().'.xlsx');
+       //return (new ReportExport(5,"mar",Carbon::today()))->download('reporte_'.Carbon::today().'.xlsx');
+
+        //return $pdf->download('pedidos_'. $request->user()->username);
 
     }
 }
