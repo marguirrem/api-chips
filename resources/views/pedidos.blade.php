@@ -17,9 +17,8 @@
     <br>
     <div class="container" >
         <h1 class="fondo">Pedidos</h1>
-
         <table class="table">
-            <thead class="fondo">
+            <thead class="fondo table">
                 <th>Id</th>
                 <th>Factura</th>
                 <th>Código Cliente</th>
@@ -29,9 +28,9 @@
                 <th>Geolocalización</th>
                 <th>Archivo adjunto</th>
             </thead>
-            <tbody>
+            <tbody >
                 @foreach ($sales as $sale)
-                    <tr>
+                    <tr class="table">
                         <td>{{$sale->id}}</td>
                         <td>{{$sale->invoice_code}}</td>
                         <td>{{$sale->client_id}}</td>

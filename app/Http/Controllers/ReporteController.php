@@ -7,6 +7,7 @@ use App\Models\Sales;
 use App\Models\SalesItems;
 use App\Models\Client;
 use App\Models\Product;
+use App\Models\Payment;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -33,12 +34,11 @@ class ReporteController extends Controller
     public function pedidos(Request $request){  
 
         set_time_limit(0);
-        $userId = $request->query('userId');
         $fecha = $request->query('fecha');
 
         if($request->query('fecha')){
-            return (new ReportExport($request->user()->id,$request->user()->username,$fecha))->download('reporte_'.$fecha.'.xlsx');
-           //return (new ReportExport(5,"mar",$fecha))->download('reporte_'.$fecha.'.xlsx');
+           // return (new ReportExport($request->user()->id,$request->user()->username,$fecha))->download('reporte_'.$fecha.'.xlsx');
+           return (new ReportExport(5,"mar",$fecha))->download('reporte_'.$fecha.'.xlsx');
         }
         //dd($fecha);
        // $sales = Sales::with('items')->where('user_id','=',$request->user()->id)->whereDate('created_At','=',Carbon::today())->get();
@@ -70,4 +70,17 @@ class ReporteController extends Controller
         //return $pdf->download('pedidos_'. $request->user()->username);
 
     }
+
+    public function cobros(Request $request){  
+
+        $fecha = $request->query('fecha');
+        if($request->query('fecha')){
+            return (new ReportExport($request->user()->id,$request->user()->username,$fecha))->download('reporte_'.$fecha.'.xlsx');
+           //return (new ReportExport(5,"mar",$fecha))->download('reporte_'.$fecha.'.xlsx');
+        }
+        return (new ReportExport($request->user()->id,$request->user()->username,Carbon::today()))->download('reporte_'.Carbon::today().'.xlsx');
+
+    }
+
+
 }

@@ -7,6 +7,8 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Support\Carbon;
 use App\Models\Sales;
+use App\Models\Payment;
+
 use Maatwebsite\Excel\Concerns\Exportable;
 
 class ReportExport implements FromView
@@ -26,11 +28,12 @@ class ReportExport implements FromView
 
     public function view(): View
     {
-        $sales = Sales::with('items')->where('user_id','=', $this->userId)->whereDate('created_At','=', $this->fecha)->get();
+        //$sales = Sales::with('items')->where('user_id','=', $this->userId)->whereDate('created_At','=', $this->fecha)->get();
 
-    
-        return view('pedidos', [
-            'sales' => $sales
-        ]);
+        $payments = Payment::where('vendedor_id','=', $this->userId)->whereDate('fecha_pago','=', $this->fecha)->get();
+
+       // return view('pedidos', ['sales' => $sales]);
+
+        return view('cobros', ['payments' => $payments]);
     }
 }
